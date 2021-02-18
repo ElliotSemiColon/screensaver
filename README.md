@@ -1,2 +1,2 @@
-# screensaver
-webpage to leave up when youre afk to avoid screen burn 
+# [screensaver](https://elliotsemicolon.github.io/projects/screensaver/index.html)
+fun looking rainbow to stop screen burn when your computer screen is left on for long periods
