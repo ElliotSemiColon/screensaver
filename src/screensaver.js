@@ -32,10 +32,13 @@ function rainbow(x){
     return colour;
 }
 
-function makeGradient(colour1, colour2, x){
-    let gradient = ctx.createLinearGradient(0,Math.tan(x)*-100,canvas.width,Math.tan(x)*100);
+function makeGradient(colour1, colour2, colour3, x){
+    let unitCircleX = Math.cos(x)*1500, unitCircleY = Math.sin(x)*1500;
+    let gradient = ctx.createLinearGradient(canvas.width/2-unitCircleX,canvas.height/2-unitCircleY,canvas.width/2+unitCircleX,canvas.height/2+unitCircleY);
     gradient.addColorStop(0, colour1);
-    gradient.addColorStop(1, colour2);
+    //gradient.addColorStop(0.25, colour3);
+    gradient.addColorStop(0.5, colour3);
+    gradient.addColorStop(1, colour1);
     return gradient;
 }
 
@@ -43,14 +46,15 @@ function main(timestamp){
     
     if(timestamp){
         let x = timestamp*speed/1000
-        let rgb = rainbow(x);
-        console.log(rgb.b, rgb.r, rgb.g);
+        let rgb = rainbow(x*3);
+        //console.log(rgb.b, rgb.r, rgb.g);
         let colour1 = rgbToHex(rgb.r, rgb.g, rgb.b);
         //let colour2 = rgbToHex(rgb.b, rgb.r, rgb.g);
         let colour2 = rgbToHex(rgb.g, rgb.b, rgb.r);
+        let colour3 = rgbToHex(rgb.b, rgb.r, rgb.g);
         //console.log(colour1, colour2);
-    
-        ctx.fillStyle = makeGradient(colour1, colour2, x);
+
+        ctx.fillStyle = makeGradient(colour1, colour2, colour3, x);
         ctx.fillRect(0,0,canvas.width,canvas.height);
     }
     
